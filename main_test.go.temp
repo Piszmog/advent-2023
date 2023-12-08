@@ -1,0 +1,45 @@
+package main
+
+import (
+	"bufio"
+	"strings"
+	"testing"
+)
+
+func TestPart1(t *testing.T) {
+	input := ``
+	scanner := bufio.NewScanner(strings.NewReader(input))
+
+	actual := 0
+
+	for scanner.Scan() {
+		lineVal, err := readLinePart1(string(scanner.Text()))
+		if err != nil {
+			t.Errorf("Unexpected error: %s", err)
+		}
+		actual += lineVal
+	}
+
+	if actual != 0 {
+		t.Errorf("Expected 0, got %d", actual)
+	}
+}
+
+func TestPart2(t *testing.T) {
+	input := ``
+	scanner := bufio.NewScanner(strings.NewReader(input))
+
+	actual := 0
+
+	for scanner.Scan() {
+		lineVal, err := readLinePart2(string(scanner.Text()))
+		if err != nil {
+			t.Errorf("Unexpected error: %s", err)
+		}
+		actual += lineVal
+	}
+
+	if actual != 0 {
+		t.Errorf("Expected 0, got %d", actual)
+	}
+}

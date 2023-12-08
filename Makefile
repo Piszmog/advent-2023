@@ -10,7 +10,7 @@ init:
 	@echo "Initializing day $(DAY)..."
 	@mkdir -p day$(DAY)
 	@cd day$(DAY) && go mod init github.com/Piszmog/advent-2023/day$(DAY)
-	@mv main.go.template day$(DAY)/main.go && mv main_test.go.template day$(DAY)/main_test.go
+	@cp main.go.temp day$(DAY)/main.go && cp main_test.go.temp day$(DAY)/main_test.go
 	@go work use ./day$(DAY)
 run:
 	@if [ -z "$(DAY)" ]; then \
