@@ -30,16 +30,13 @@ treb7uchet`
 }
 
 func TestPart2(t *testing.T) {
-	/*
-			input := `two1nine
-		eightwothree
-		abcone2threexyz
-		xtwone3four
-		4nineeightseven2
-		zoneight234
-		7pqrstsixteen`
-	*/
-	input := `abconetwo`
+	input := `two1nine
+			eightwothree
+			abcone2threexyz
+			xtwone3four
+			4nineeightseven2
+			zoneight234
+			7pqrstsixteen`
 	scanner := bufio.NewScanner(strings.NewReader(input))
 
 	actual := 0
@@ -52,8 +49,7 @@ func TestPart2(t *testing.T) {
 		actual += lineVal
 	}
 
-	//281
-	if actual != 12 {
+	if actual != 281 {
 		t.Errorf("Expected 281, got %d", actual)
 	}
 }

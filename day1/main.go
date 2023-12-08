@@ -5,6 +5,7 @@ import (
 	"io"
 	"os"
 	"strconv"
+	"strings"
 
 	"github.com/Piszmog/advent-2023/utils"
 )
@@ -45,7 +46,7 @@ func solveParts(r io.Reader) (int, int, error) {
 		}
 		part2Result += actual
 	}
-	return part1Result, 0, nil
+	return part1Result, part2Result, nil
 }
 
 func readLinePart1(input string) (int, error) {
@@ -66,43 +67,32 @@ func readLinePart1(input string) (int, error) {
 	return actual, nil
 }
 
-// TODO: not complete
 func readLinePart2(input string) (int, error) {
 	firstNumber := ""
+	firstNumberIndex := -1
 	lastNumber := ""
+	lastNumberIndex := -1
 
-	start := 0
-	end := 0
-
-	for start < len(input) {
-		if firstNumber == "" {
-			if input[start] >= '0' && input[start] <= '9' {
-				firstNumber = string(input[start])
-				end = start + 1
-			} else {
-				fmt.Println(input[end : start+1])
-				val := numbers[input[end:start+1]]
-				if val != "" {
-					firstNumber = val
-					end = start
+	for num, val := range numbers {
+		if strings.Contains(input, num) {
+			i := strings.Index(input, num)
+			j := strings.LastIndex(input, num)
+			if firstNumberIndex == -1 || i < firstNumberIndex {
+				if firstNumberIndex > lastNumberIndex {
+					lastNumber = firstNumber
+					lastNumberIndex = firstNumberIndex
 				}
+				firstNumber = val
+				firstNumberIndex = i
 			}
-		} else {
-			if input[start] >= '0' && input[start] <= '9' {
-				lastNumber = string(input[start])
-				end = start + 1
-			} else {
-				fmt.Println(input[end : start+1])
-				val := numbers[input[end:start+1]]
-				if val != "" {
-					fmt.Println(val)
-					lastNumber = val
-					end = start
-				}
+
+			if lastNumberIndex == -1 || j > lastNumberIndex {
+				lastNumber = val
+				lastNumberIndex = j
 			}
 		}
-		start++
 	}
+
 	actual, err := strconv.Atoi(firstNumber + lastNumber)
 	if err != nil {
 		return 0, err
@@ -111,6 +101,16 @@ func readLinePart2(input string) (int, error) {
 }
 
 var numbers = map[string]string{
+	"0":     "0",
+	"1":     "1",
+	"2":     "2",
+	"3":     "3",
+	"4":     "4",
+	"5":     "5",
+	"6":     "6",
+	"7":     "7",
+	"8":     "8",
+	"9":     "9",
 	"zero":  "0",
 	"one":   "1",
 	"two":   "2",
