@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Piszmog/advent-2023/utils"
+	"github.com/Piszmog/advent-2023/go/utils"
 )
 
 func main() {
